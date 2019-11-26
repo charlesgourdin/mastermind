@@ -3,16 +3,18 @@ import './Game.css'
 import RowToFind from './RowToFind';
 import Combinaison from './Combinaison';
 import Clavier from './Clavier';
+import Tentative from './Tentative';
 
 
 
 class Game extends Component{
     constructor(props){
         super(props)
+        this.case = 0
         this.state = {  
             toFind:this.GenerateRowToFind(),
-            combinaison:this.GenerateRowCombinaison()
-            
+            combinaison:this.GenerateRowCombinaison(),
+            tentatives: [],         
         }
     }
 
@@ -35,16 +37,30 @@ class Game extends Component{
     }
 
     changeColor =(newColor)=>{
-        let item = Object.assign({}, this.state.combinaison[0], {color: newColor});
-        this.state.combinaison[0] = item;
-        this.setState({combinaison: this.state.combinaison});
+        let combClone = [...this.state.combinaison];
+        let caseValue = {...combClone[this.case], color: newColor};
+        combClone[this.case] = caseValue;
+        this.setState({combinaison: combClone});
+        if(this.case===3) {
+            this.case = 0
+            this.setState({
+                tentatives: [...this.state.tentatives, this.state.combinaison],
+                combinaison:this.GenerateRowCombinaison()
+            })
+        } else {
+            this.case +=1;
+        } 
     }
 
 
     render(){
+        const {tentatives} = this.state;
         return (
             <div>
                 <RowToFind toFind={this.state.toFind}/>
+                {tentatives.map((item,i) => {
+                    return <Tentative combinaison={item} key={i}/>
+                })}
                 <Combinaison combinaison={this.state.combinaison}/>
                 <Clavier colors={this.colors} changeColor={this.changeColor}/>
             </div>

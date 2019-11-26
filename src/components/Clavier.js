@@ -14,9 +14,9 @@ class Clavier extends Component {
         const{colors, changeColor}=this.props
         return(
             <div className="button">
-                {colors.map((item)=>{
+                {colors.map((item, i)=>{
                     return (
-                        <button style={{backgroundColor:item}} onClick={()=>changeColor('red')}></button>
+                        <button style={{backgroundColor:item}} onClick={()=>changeColor(item)} key={i}></button>
                     )
                 })}
             </div>
