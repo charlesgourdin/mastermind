@@ -25,3 +25,53 @@
     cursor:pointer;
     padding:16px 31px;
 }
+
+.gameBoard{
+    border: 1px white solid;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toFind{
+    border: 1px white solid;
+    height: 15%;
+}
+
+.tryBoard{
+    border: 1px white solid;
+    height: 70%;
+}
+
+.clavier{
+    border: 1px white solid;
+    height: 15%;
+}
+
+.correspDiv{
+    /* border: 1px rgb(145, 29, 29) solid; */
+    width: 50px;
+    height: 50px;
+    margin: 16px 8px 16px 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.result {
+    display: flex;
+}
+
+.attempt {
+    display: flex;
+}
+
+.point{
+    border: 1px white solid;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+}
