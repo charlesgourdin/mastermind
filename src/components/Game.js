@@ -61,6 +61,7 @@ class Game extends Component {
         let colorCom = comb.map(item => { return item.color })
         let colorFin = this.state.toFind.map(item => { return item.color })
         let validTab = [null, null, null, null]
+        let compteVerif = 0
 
         //On check si une couleur est à la bonne place
         for (let i = 0 ; i < 4 ; i++) {
@@ -69,7 +70,8 @@ class Game extends Component {
                 //Si oui, on change les couleurs des cases concernés pour les sortir des verifs
                 colorFin[i] = 'white'
                 colorCom[i] = 'black'
-                validTab[i] = 'red'
+                validTab[compteVerif] = 'red'
+                compteVerif +=1
             }
         }
 
@@ -81,7 +83,8 @@ class Game extends Component {
                     //Si oui, on change les couleurs des cases concernés pour les sortir des verifs
                     colorFin[i] = 'white'
                     colorCom[j] = 'black'
-                    validTab[j] = 'white'
+                    validTab[compteVerif] = 'white'
+                    compteVerif += 1
                 }
             }
         }
