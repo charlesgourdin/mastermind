@@ -16,7 +16,7 @@ class Game extends Component {
             toFind: this.GenerateRowToFind(),
             combinaison: this.GenerateRowCombinaison(),
             tentatives: [],
-            validation:[]
+            validation:[null, null, null, null]
         }
     }
 
@@ -69,7 +69,7 @@ class Game extends Component {
                 //Si oui, on change les couleurs des cases concernés pour les sortir des verifs
                 colorFin[i] = 'white'
                 colorCom[i] = 'black'
-                validTab[i] = 'black'
+                validTab[i] = 'red'
             }
         }
 
@@ -94,7 +94,7 @@ class Game extends Component {
 
 
     render() {
-        const { tentatives } = this.state;
+        const { tentatives , validation} = this.state;
         return (
             <div className='gameBoard'>
                 <div className='toFind'>
@@ -104,12 +104,12 @@ class Game extends Component {
                     {tentatives.map((item, i) => {
                         return (<div className='result' key={i}>
                             <Tentative combinaison={item} key={'attempt' + i} />
-                            <Correspondance key={'corresp' + i} />
+                            <Correspondance key={'corresp' + i} valid={validation}/>
                         </div>)
                     })}
                     <div className='attempt'>
                         <Combinaison combinaison={this.state.combinaison} />
-                        <Correspondance />
+                        <Correspondance valid={[null, null, null, null]}/>
                     </div>
 
                 </div>
