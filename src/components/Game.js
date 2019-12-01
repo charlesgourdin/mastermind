@@ -15,8 +15,7 @@ class Game extends Component {
         this.state = {
             toFind: this.GenerateRowToFind(),
             combinaison: this.GenerateRowCombinaison(),
-            tentatives: [],
-            validation:[null, null, null, null]
+            tentatives: []
         }
     }
 
@@ -46,10 +45,6 @@ class Game extends Component {
         if (this.case === 3) {
             this.case = 0
             this.verifCorresp(combClone)
-            this.setState({
-                tentatives: [...this.state.tentatives, combClone],
-                combinaison: this.GenerateRowCombinaison()
-            })
         } else {
             this.setState({ combinaison: combClone });
             this.case += 1;
@@ -88,8 +83,13 @@ class Game extends Component {
                 }
             }
         }
-        
-        this.setState({validation: validTab})
+
+        this.setState({
+            tentatives: [...this.state.tentatives, {color: comb , validation: validTab}],
+            combinaison: this.GenerateRowCombinaison()
+        })
+
+        //Tentatives pour garder les essais, avec color = couleur du test et validation = résultat obtenu
 
         console.log(colorFin, colorCom, validTab)
 
@@ -97,7 +97,7 @@ class Game extends Component {
 
 
     render() {
-        const { tentatives , validation} = this.state;
+        const { tentatives } = this.state;
         return (
             <div className='gameBoard'>
                 <div className='toFind'>
@@ -106,8 +106,8 @@ class Game extends Component {
                 <div className='tryBoard'>
                     {tentatives.map((item, i) => {
                         return (<div className='result' key={i}>
-                            <Tentative combinaison={item} key={'attempt' + i} />
-                            <Correspondance key={'corresp' + i} valid={validation}/>
+                            <Tentative combinaison={item.color} key={'attempt' + i} />
+                            <Correspondance key={'corresp' + i} valid={item.validation}/>
                         </div>)
                     })}
                     <div className='attempt'>
