@@ -11,9 +11,9 @@ class Clavier extends Component {
     }
 
     render(){
-        const{colors, changeColor}=this.props
+        const{colors, changeColor, endGame}=this.props
         return(
-            <div className="button">
+            <div className="button" style={{ display: !endGame ? 'flex' : 'none' }}>
                 {colors.map((item, i)=>{
                     return (
                         <button style={{backgroundColor:item}} onClick={()=>changeColor(item)} key={i}></button>
