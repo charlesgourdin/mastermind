@@ -18,14 +18,14 @@
 
 .button button{
     border-radius:28px;
-    border:1px solid #1d1d1d;
+    border:0px solid #1d1d1d;
     display:inline-block;
     cursor:pointer;
     padding:16px 31px;
 }
 
 .gameBoard{
-    border: 1px white solid;
+    border: 0px white solid;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -34,14 +34,15 @@
 }
 
 .toFind{
-    border: 1px white solid;
+    border: 0px white solid;
+    background: #010327 ;
     height: 10%;
     width: 100%;
     display: flex;
 }
 
 .tryBoard{
-    border: 1px white solid;
+    border: 0px white solid;
     height: 80%;
     width: 100%;
     display: flex;
@@ -50,7 +51,8 @@
 }
 
 .clavier{
-    border: 1px white solid;
+    border: 0px white solid;
+    background: #010327 ;
     height: 10%;
     width: 100%;
     display: flex;

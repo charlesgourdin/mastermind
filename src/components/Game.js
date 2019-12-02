@@ -26,7 +26,7 @@ class Game extends Component {
     GenerateRowToFind = () => {
         const row = []
         for (let i = 0; i < 4; i++) {
-            row.push({ color: this.colors[Math.floor(4 * Math.random())], border: '1px black solid' })
+            row.push({ color: this.colors[Math.floor(4 * Math.random())], border: '2px white solid' })
         }
         return row
 
@@ -35,7 +35,7 @@ class Game extends Component {
     GenerateRowCombinaison = () => {
         const row = []
         for (let i = 0; i < 4; i++) {
-            row.push({ color: 'SeaShell ', border: '1px black solid' })
+            row.push({ color: 'SeaShell ', border: '2px white solid' })
         }
         return row
     }
