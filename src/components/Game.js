@@ -12,7 +12,7 @@ class Game extends Component {
     constructor(props) {
         super(props)
         this.case = 0
-        this.attempt = 8
+        this.attempt = 7
         this.state = {
             toFind: this.GenerateRowToFind(),
             combinaison: this.GenerateRowCombinaison(),
@@ -118,6 +118,7 @@ class Game extends Component {
             <div className='gameBoard'>
                 <div className='toFind'>
                     <RowToFind toFind={this.state.toFind} />
+                    <Correspondance valid={['rgb(1,0,0,0)', 'rgb(1,0,0,0)', 'rgb(1,0,0,0)', 'rgb(1,0,0,0)']} />
                 </div>
                 <div className='tryBoard'>
                     {tentatives.map((item, i) => {
