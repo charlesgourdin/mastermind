@@ -15,7 +15,8 @@ class Game extends Component {
         this.state = {
             toFind: this.GenerateRowToFind(),
             combinaison: this.GenerateRowCombinaison(),
-            tentatives: []
+            tentatives: [],
+            rest: this.generateRestAttempt(7)
         }
     }
 
@@ -59,20 +60,20 @@ class Game extends Component {
         let compteVerif = 0
 
         //On check si une couleur est à la bonne place
-        for (let i = 0 ; i < 4 ; i++) {
+        for (let i = 0; i < 4; i++) {
             if (colorFin[i] === colorCom[i]) {
                 // console.log(`${i} est à la bonne place`)
                 //Si oui, on change les couleurs des cases concernés pour les sortir des verifs
                 colorFin[i] = 'white'
                 colorCom[i] = 'black'
                 validTab[compteVerif] = 'red'
-                compteVerif +=1
+                compteVerif += 1
             }
         }
 
         // Puis on check si une couleur est bien présente
-        for (let i = 0 ; i < 4 ; i++){
-            for (let j = 0 ; j < 4 ; j++) {
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
                 if (colorFin[i] === colorCom[j]) {
                     // console.log(`${j} est de la bonne couleur`)
                     //Si oui, on change les couleurs des cases concernés pour les sortir des verifs
@@ -85,7 +86,7 @@ class Game extends Component {
         }
 
         this.setState({
-            tentatives: [...this.state.tentatives, {color: comb , validation: validTab}],
+            tentatives: [...this.state.tentatives, { color: comb, validation: validTab }],
             combinaison: this.GenerateRowCombinaison()
         })
 
@@ -95,9 +96,20 @@ class Game extends Component {
 
     }
 
+    generateRestAttempt = (nb) => {
+
+        const toReturn = []
+
+        for (let i = 0; i < nb; i++) {
+            toReturn.push(this.GenerateRowCombinaison())
+        }
+
+        return toReturn
+    }
+
 
     render() {
-        const { tentatives } = this.state;
+        const { tentatives, rest } = this.state;
         return (
             <div className='gameBoard'>
                 <div className='toFind'>
@@ -107,14 +119,19 @@ class Game extends Component {
                     {tentatives.map((item, i) => {
                         return (<div className='result' key={i}>
                             <Tentative combinaison={item.color} key={'attempt' + i} />
-                            <Correspondance key={'corresp' + i} valid={item.validation}/>
+                            <Correspondance key={'corresp' + i} valid={item.validation} />
                         </div>)
                     })}
                     <div className='attempt'>
                         <Combinaison combinaison={this.state.combinaison} />
-                        <Correspondance valid={[null, null, null, null]}/>
+                        <Correspondance valid={[null, null, null, null]} />
                     </div>
-
+                    {rest.map((item, i) => {
+                        return (<div className='result' key={i}>
+                            <Tentative combinaison={item} key={'attempt' + i} />
+                            <Correspondance key={'corresp' + i} valid={[null, null, null, null]} />
+                        </div>)
+                    })}
                 </div>
                 <div className='clavier'>
                     <Clavier colors={this.colors} changeColor={this.changeColor} />

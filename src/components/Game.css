@@ -4,8 +4,6 @@
     width: 40%;
     min-width: 300px;
     margin: auto;
-    margin-top: 16px;
-    margin-bottom: 16px;
 }
 
 .button {
@@ -14,8 +12,6 @@
     width: 20%;
     min-width: 300px;
     margin: auto;
-    margin-top: 16px;
-    margin-bottom: 16px;
 }
 
 .button button{
@@ -28,7 +24,7 @@
 
 .gameBoard{
     border: 1px white solid;
-    height: 80vh;
+    height: 95vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,17 +33,21 @@
 
 .toFind{
     border: 1px white solid;
-    height: 15%;
+    height: 10%;
+    display: flex;
 }
 
 .tryBoard{
     border: 1px white solid;
-    height: 70%;
+    height: 85%;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .clavier{
     border: 1px white solid;
-    height: 15%;
+    height: 5%;
+    display: flex;
 }
 
 .correspDiv{
