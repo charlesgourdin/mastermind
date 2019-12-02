@@ -5,11 +5,18 @@ import './Square.css';
 
 
 
-function Square (style) {
+function Square(props) {
 
-        return(
-            <span className="square" style={style}></span>
-        )
+    return (
+        <>
+            <span className="square" style={{
+                backgroundColor: props.backgroundColor,
+                border: props.border
+            }}>
+                <p>{props.text}</p>
+            </span>
+        </>
+    )
 
 }
 

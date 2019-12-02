@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Square from './Square';
 import './Game.css'
 
-class RowToFind extends Component {
+class RowToHide extends Component {
     constructor(props){
         super(props)
         this.state={
@@ -17,9 +17,9 @@ class RowToFind extends Component {
                 {toFind.map((item,i)=>{
                     return (
                         <Square
-                        backgroundColor={item.color}
+                        backgroundColor={'#010327'}
                         border={item.border}
-                        text={''}                     
+                        text={"?"}                      
                         key={i}/>
                     )
                 })}
@@ -28,4 +28,4 @@ class RowToFind extends Component {
     }
 }
 
-export default RowToFind
+export default RowToHide

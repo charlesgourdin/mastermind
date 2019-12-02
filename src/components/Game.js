@@ -5,6 +5,7 @@ import Combinaison from './Combinaison';
 import Clavier from './Clavier';
 import Tentative from './Tentative';
 import Correspondance from './Correspondance';
+import RowToHide from './RowToHide';
 
 
 
@@ -17,11 +18,12 @@ class Game extends Component {
             toFind: this.GenerateRowToFind(),
             combinaison: this.GenerateRowCombinaison(),
             tentatives: [],
-            rest: this.generateRestAttempt(this.attempt)
+            rest: this.generateRestAttempt(this.attempt),
+            endGame : false
         }
     }
 
-    colors = ["OrangeRed", "RoyalBlue", "SeaGreen", "gold"]
+    colors = ["#de2c00", "#008dde", "#00ab53", "#ffcc00"]
 
     GenerateRowToFind = () => {
         const row = []
@@ -72,6 +74,10 @@ class Game extends Component {
             }
         }
 
+        if (compteVerif===4) {
+            this.setState({endGame : true})
+        }
+
         // Puis on check si une couleur est bien présente
         for (let i = 0; i < 4; i++) {
             for (let j = 0; j < 4; j++) {
@@ -92,7 +98,7 @@ class Game extends Component {
             tentatives: [...this.state.tentatives, { color: comb, validation: validTab }],
             combinaison: this.GenerateRowCombinaison(),
             rest : this.generateRestAttempt(this.attempt)
-        })
+        }, )
 
         //Tentatives pour garder les essais, avec color = couleur du test et validation = résultat obtenu
 
@@ -113,12 +119,18 @@ class Game extends Component {
 
 
     render() {
-        const { tentatives, rest } = this.state;
+        const { tentatives, rest, endGame } = this.state;
         return (
             <div className='gameBoard'>
                 <div className='toFind'>
+                    <div className = "soluceOff" style={{display : !endGame ? 'flex' : 'none'}}>
+                    <RowToHide toFind={this.state.toFind} />
+                    <Correspondance valid={['rgb(1,0,0,0)', 'rgb(1,0,0,0)', 'rgb(1,0,0,0)', 'rgb(1,0,0,0)']} />
+                    </div>
+                    <div className = "soluceOn" style={{display : endGame ? 'flex' : 'none'}}>
                     <RowToFind toFind={this.state.toFind} />
                     <Correspondance valid={['rgb(1,0,0,0)', 'rgb(1,0,0,0)', 'rgb(1,0,0,0)', 'rgb(1,0,0,0)']} />
+                    </div>
                 </div>
                 <div className='tryBoard'>
                     {tentatives.map((item, i) => {

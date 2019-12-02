@@ -1,6 +1,15 @@
 .square {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 40px;
     height: 40px;
     border-radius: 16px;
+}
+
+.square p {
+    font-family: 'Michroma', sans-serif;
+    display: block;
+    margin: 0;
+    color: white;
 }

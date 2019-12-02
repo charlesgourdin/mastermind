@@ -41,6 +41,16 @@
     display: flex;
 }
 
+.soluceOn{
+    width : 100%;
+    display: flex;
+}
+
+.soluceOff{
+    width : 100%;
+    display: flex;
+}
+
 .tryBoard{
     border: 0px white solid;
     height: 80%;
