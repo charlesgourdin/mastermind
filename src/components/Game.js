@@ -6,6 +6,7 @@ import Clavier from './Clavier';
 import Tentative from './Tentative';
 import Correspondance from './Correspondance';
 import RowToHide from './RowToHide';
+import EndModal from './EndModal';
 
 
 
@@ -141,14 +142,7 @@ class Game extends Component {
                     </div>
                 </div>
                 <div className='tryBoard'>
-                    <div className="endModal" style={{ display: win ? 'flex' : 'none' }}>
-                        <h2>You win!</h2>
-                        <h4>In {7-this.attempt} attempts</h4>
-                    </div>
-                    <div className="endModal" style={{ display: loose ? 'flex' : 'none' }}>
-                        <h2>You loose...</h2>
-                        <h4>Try again</h4>
-                    </div>
+                    <EndModal win={win} loose={loose} attempt={this.attempt}/>
                     {tentatives.map((item, i) => {
                         return (<div className='result' key={i}>
                             <Tentative combinaison={item.color} key={'attempt' + i} />

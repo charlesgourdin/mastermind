@@ -105,6 +105,8 @@
     position: absolute;
     height: 80%;
     width: 100%;
+    max-width: 800px;
+    min-width: 335px;
     display: flex;
     flex-direction: column;
     justify-content: center;
