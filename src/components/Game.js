@@ -12,11 +12,12 @@ class Game extends Component {
     constructor(props) {
         super(props)
         this.case = 0
+        this.attempt = 8
         this.state = {
             toFind: this.GenerateRowToFind(),
             combinaison: this.GenerateRowCombinaison(),
             tentatives: [],
-            rest: this.generateRestAttempt(7)
+            rest: this.generateRestAttempt(this.attempt)
         }
     }
 
@@ -85,9 +86,12 @@ class Game extends Component {
             }
         }
 
+        this.attempt -= 1
+
         this.setState({
             tentatives: [...this.state.tentatives, { color: comb, validation: validTab }],
-            combinaison: this.GenerateRowCombinaison()
+            combinaison: this.GenerateRowCombinaison(),
+            rest : this.generateRestAttempt(this.attempt)
         })
 
         //Tentatives pour garder les essais, avec color = couleur du test et validation = résultat obtenu
