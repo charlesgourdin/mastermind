@@ -201,6 +201,12 @@
     }
   }
 
+  @media screen and (max-width: 500px){
+    .gameBoard{
+      transform: scale(0.9)
+    }
+  }
+
   @media screen and (max-width: 430px) {
     .endModal h2{
         font-size: 12vw;
