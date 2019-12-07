@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Game.css'
+import { Link } from 'react-router-dom';
 
 class EndModal extends Component {
     constructor(props){
@@ -15,7 +16,7 @@ class EndModal extends Component {
             <div className="endModal" style={{ display: (win || loose) ? 'flex' : 'none' }}>
                         <h2>{win ? 'You win!' : 'You loose... '}</h2>
                         <h4>{win ? `In ${7-attempt} attempt` : `Try again!`}</h4>
-                        <button>Go to menu</button>
+                        <Link to={"/"}><button className='buttonStyle'>Go to menu</button></Link>
             </div>
         )
     }
